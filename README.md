@@ -1,6 +1,6 @@
 # Flutter Project
 
-![Project Logo](assets/logo.png)
+
 
 ## Introduction
 
@@ -10,7 +10,7 @@ This is a Flutter project built using Dart to create a cross-platform mobile app
 
 - Cross-platform compatibility (iOS & Android)
 - Responsive UI
-- State management
+
 
 
 ## Screenshots
@@ -18,7 +18,7 @@ This is a Flutter project built using Dart to create a cross-platform mobile app
 Here are some screenshots of the app:
 
 ![Screenshot 1](assets/images/app_screenshot/Screenshot_1.png)
-![Screenshot 2](ssets/images/app_screenshot/Screenshot_2.png)
+![Screenshot 2](assets/images/app_screenshot/Screenshot_2.png)
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ Make sure you have the following installed:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/flutter-project.git
+   git clone https://github.com/Adeyemi-olusola/credpal.git
    ```
 2. Navigate to the project directory:
    ```sh
@@ -55,15 +55,22 @@ Make sure you have the following installed:
 ```
 flutter-project/
 │── lib/
-│   ├── main.dart      # Entry point of the application
-│   ├── screens/       # UI screens
-│   ├── widgets/       # Reusable UI components
-│   ├── models/        # Data models
-│   ├── services/      # API services
-│   ├── providers/     # State management
-│── assets/            # Images and other assets
-│── pubspec.yaml       # Dependencies
-│── README.md          # Project documentation
+│   ├── app/
+│   │   ├── textStyle.dart  # Text styles
+│   │   ├── theme.dart      # Theme configuration
+│   ├── core/
+│   │   ├── features/
+│   │   │   ├── shopping/
+│   │   │   │   ├── model/   # Data models
+│   │   │   │   ├── screen/  # UI screens
+│   │   │   │   ├── widget/  # Reusable widgets
+│   ├── shared/
+│   │   ├── utils/  # Utility functions
+│   │   ├── widget/ # Shared widgets
+│   ├── main.dart  # Entry point of the application
+│── assets/        # Images and other assets
+│── pubspec.yaml   # Dependencies
+│── README.md      # Project documentation
 ```
 
 ## Dependencies
