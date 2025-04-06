@@ -1,11 +1,11 @@
 import 'package:credpal_test/features/shopping/model/shopping_model.dart';
+import 'package:credpal_test/shared/utils/amount_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCardWidget extends StatefulWidget {
   final ShoppingModel shoppingItem;
 
-  // Constructor with required parameter
   const ProductCardWidget({super.key, required this.shoppingItem});
 
   @override
@@ -19,90 +19,109 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
   }
 
   Widget _productCard(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 24.w),
-      width: 161.w,
-      padding: EdgeInsets.all(10.sp),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(10.sp),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 96.h,
-                  width: 112.w,
+    return Stack(
+      children: [
+        Container(
+          width: 161.w,
+          height: 174.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(
+                  0.05,
+                ), 
+                offset: Offset(0, 4), 
+                blurRadius: 10, 
+                spreadRadius: 0, 
+              ),
+            ],
+          ),
+        ),
+        Container(
+          width: 161.w,
+          height: 174.h,
+
+          child: Image.asset(widget.shoppingItem.productImage!),
+        ),
+        Container(
+          width: 161.w,
+          height: 174.h,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: Container(
+                  height: 50.w, 
+                  width: 50.w,
+                  padding: EdgeInsets.all(5.sp),
                   decoration: BoxDecoration(
-                    image: widget.shoppingItem.productImage != null
-                        ? DecorationImage(
-                            image: AssetImage(widget.shoppingItem.productImage!),
-                      
-                          )
-                        : null,
-                    color: Colors.grey[200], // Fallback color if no image
-                    borderRadius: BorderRadius.circular(10),
+                    shape: BoxShape.circle,
+                     color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0, 4),
+                        blurRadius: 8,
+                      ),
+                    ],
                   ),
+                  child: widget.shoppingItem.widget,
                 ),
-                SizedBox(height: 13.h),
-
-                // Product Name
-                Text(
-                  widget.shoppingItem.productName.toString(),
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'Avenir',
-                  ),
-                ),
-                SizedBox(height: 8.h),
-
-                // Price and Old Price (Strikethrough)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Product Name
                     Text(
-                      '\$${widget.shoppingItem.price}', // Display price
+                      widget.shoppingItem.productName.toString(),
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w800,
-                        color: Theme.of(context).primaryColor,
+                        fontFamily: 'Avenir',
                       ),
                     ),
-                    if (widget.shoppingItem.price != null) // If old price exists
-                      Text(
-                        '\$${widget.shoppingItem.price}',
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          decorationColor: Color(0xffB3B3CC),
-                          decorationThickness: 1,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffB3B3CC),
+                    SizedBox(height: 8.h),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formatToNaira(widget.shoppingItem.price.toString()),
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w800,
+                            color: Theme.of(context).primaryColor,
+                          ),
                         ),
-                      ),
+                        if (widget.shoppingItem.price !=
+                            null) 
+                          Text(
+                          formatToNaira(widget.shoppingItem.price.toString()),
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              decorationColor: Color(0xffB3B3CC),
+                              decorationThickness: 1,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xffB3B3CC),
+                            ),
+                          ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+
+            ],
           ),
-          // Profile Image or Badge
-          Positioned(
-            top: 0,
-            left: 0,
-            child: CircleAvatar(
-              radius: 25.r,
-              backgroundColor: Colors.white,
-              child: widget.shoppingItem.widget,
-             
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

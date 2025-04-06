@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // Optional for responsiveness
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 
 class CustomTextInput extends StatelessWidget {
   final String hintText;

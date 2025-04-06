@@ -1,6 +1,7 @@
 import 'package:credpal_test/app/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ShoppingTopComponent extends StatefulWidget {
   const ShoppingTopComponent({super.key});
@@ -26,6 +27,7 @@ class _ShoppingTopComponentState extends State<ShoppingTopComponent> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     'Pay later \neverywhere',
@@ -35,13 +37,18 @@ class _ShoppingTopComponentState extends State<ShoppingTopComponent> {
                       color: Colors.black,
                     ),
                   ),
+
+                  Padding(
+                    padding:  EdgeInsets.only(left: 10.w ,bottom: 10.h),
+                    child: SvgPicture.asset('assets/svgs/warning.svg'),
+                  )
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Shopping limit: ',
+                    'Shopping limit:0 ',
                     style: AppTextStyles.bodyText1.copyWith(
                       fontSize: 12.sp,
                       color:Colors.black,

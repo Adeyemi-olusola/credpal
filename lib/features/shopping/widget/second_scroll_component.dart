@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondScrollComponent extends StatelessWidget {
-   SecondScrollComponent({super.key});
-    List<ShoppingModel> shoppingLists = shoppingList;
+  SecondScrollComponent({super.key});
+  List<ShoppingModel> shoppingLists = shoppingList2;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,13 @@ class SecondScrollComponent extends StatelessWidget {
 
         child: Row(
           children: [
-            ...List.generate(shoppingLists.length, (index) => ProductCardWidget(shoppingItem :shoppingLists[index])).toList(),
+            ...List.generate(
+              shoppingLists.length,
+              (index) => Padding(
+                padding: EdgeInsets.only(right: 24.w),
+                child: ProductCardWidget(shoppingItem: shoppingLists[index]),
+              ),
+            ).toList(),
           ],
         ),
       ),

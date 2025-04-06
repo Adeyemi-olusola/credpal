@@ -16,7 +16,10 @@ class FirstScrollComponent extends StatelessWidget {
 
         child: Row(
           children: [
-            ...List.generate(shoppingLists.length, (index) => ProductCardWidget(shoppingItem :shoppingLists[index])).toList(),
+            ...List.generate(shoppingLists.length, (index) => Padding(
+              padding:  EdgeInsets.only(right: 24.w),
+              child: ProductCardWidget(shoppingItem :shoppingLists[index]),
+            )).toList(),
           ],
         ),
       ),
